@@ -1,0 +1,376 @@
+//Exercise 1 Java and XML Code
+package com.example.uiexercises;
+
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+
+public class MainActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+}
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView_welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome to Android UI"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+// Exercise 2 XML code
+XML
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="22sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/label_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter your name:"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="24dp" />
+
+    <EditText
+        android:id="@+id/edit_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Type your name"
+        android:padding="10dp"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/label_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="12dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+//Exercise 3 Java and XML code
+package com.example.uiexercises;
+
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.Spinner;
+
+public class MainActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        AutoCompleteTextView autoCourse = findViewById(R.id.auto_course);
+        Spinner spinner = findViewById(R.id.spinner_options);
+
+        String[] course = {"BS Information Technology", "BS Computer Science", "BS Business Administration", "BS Phychology", "BS Political Science"};
+        ArrayAdapter<String> courseAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, course);
+        autoCourse.setAdapter(countryAdapter);
+
+        String[] options = {"First year", "Second year", "Third year", "Fourth year"};
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, options);
+        spinner.setAdapter(spinnerAdapter);
+    }
+}
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/text_instruction"
+        android:text="Enter your country and select an option:"
+        android:textSize="18sp"
+        android:layout_marginBottom="12dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/edit_input"
+        android:hint="Enter text here"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <AutoCompleteTextView
+        android:id="@+id/auto_countries"
+        android:hint="Type a country"
+        android:layout_marginTop="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Spinner
+        android:id="@+id/spinner_options"
+        android:layout_marginTop="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
+
+//Exercise 4 Java and XML code
+package com.example.uiexercises;
+
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ToggleButton;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        Button btnStandard = findViewById(R.id.btn_standard);
+        ImageButton btnImage = findViewById(R.id.btn_image);
+        ToggleButton btnToggle = findViewById(R.id.btn_toggle);
+
+        btnStandard.setOnClickListener(v ->
+                Toast.makeText(this, "Standard Button Clicked", Toast.LENGTH_SHORT).show());
+
+        btnImage.setOnClickListener(v ->
+                Toast.makeText(this, "Image Button Clicked", Toast.LENGTH_SHORT).show());
+
+        btnToggle.setOnClickListener(v ->
+                Toast.makeText(this,
+                        btnToggle.isChecked() ? "Toggle ON" : "Toggle OFF",
+                        Toast.LENGTH_SHORT).show());
+    }
+}
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/btn_standard"
+        android:text="Standard Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <ImageButton
+        android:id="@+id/btn_image"
+        android:src="@drawable/ic_launcher_foreground"
+        android:contentDescription="Image Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <ToggleButton
+        android:id="@+id/btn_toggle"
+        android:textOn="ON"
+        android:textOff="OFF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
+
+//Exercise 5 Java and XML
+package com.example.uiexercises;
+
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.ImageSwitcher;
+import android.widget.ImageView;
+import android.widget.ViewSwitcher;
+
+public class MainActivity extends AppCompatActivity {
+    int[] images = {R.drawable.image1, R.drawable.image2};
+    int index = 0;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        ImageSwitcher imageSwitcher = findViewById(R.id.image_switcher);
+        Button btnSwitch = findViewById(R.id.btn_switch);
+
+        imageSwitcher.setFactory(() -> {
+            ImageView imageView = new ImageView(MainActivity.this);
+            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            return imageView;
+        });
+
+        imageSwitcher.setImageResource(images[index]);
+
+        btnSwitch.setOnClickListener(v -> {
+            index = (index + 1) % images.length;
+            imageSwitcher.setImageResource(images[index]);
+        });
+    }
+}
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/image_static"
+        android:src="@drawable/ic_launcher_foreground"
+        android:contentDescription="Static Image"
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
+
+    <ImageSwitcher
+        android:id="@+id/image_switcher"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="16dp" />
+
+    <Button
+        android:id="@+id/btn_switch"
+        android:text="Switch Image"
+        android:layout_marginTop="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
+
+//Exercise 6 Java and XML code
+package com.example.uiexercises;
+
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+
+public class UIDesignActivity extends AppCompatActivity {
+
+    Button btnStart, btnHelp, btnExit;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_ui_design);
+
+        btnStart = findViewById(R.id.btn_start);
+        btnHelp = findViewById(R.id.btn_help);
+        btnExit = findViewById(R.id.btn_exit);
+
+        btnStart.setOnClickListener(v ->
+                Toast.makeText(this, "Starting...", Toast.LENGTH_SHORT).show());
+
+        btnHelp.setOnClickListener(v ->
+                Toast.makeText(this, "Help section coming soon", Toast.LENGTH_SHORT).show());
+
+        btnExit.setOnClickListener(v -> {
+            Toast.makeText(this, "Exiting app...", Toast.LENGTH_SHORT).show();
+            finish(); // Closes the activity
+        });
+    }
+}
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F8F9FA"
+    android:gravity="center_horizontal"
+    android:padding="24dp">
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/tv_title"
+        android:text="Clean & User-Friendly UI"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#2E3A59"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="sans-serif-medium"
+        android:contentDescription="App title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <!-- Image with accessibility description -->
+    <ImageView
+        android:id="@+id/image_logo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/image1"
+        android:contentDescription="Application logo"
+        android:layout_marginBottom="24dp"/>
+
+    <!-- Action Buttons -->
+    <Button
+        android:id="@+id/btn_start"
+        android:text="Start"
+        android:textSize="18sp"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#007BFF"
+        android:layout_marginBottom="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="Start button"/>
+
+    <Button
+        android:id="@+id/btn_help"
+        android:text="Help"
+        android:textSize="18sp"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#28A745"
+        android:layout_marginBottom="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="Help button"/>
+
+    <Button
+        android:id="@+id/btn_exit"
+        android:text="Exit"
+        android:textSize="18sp"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#DC3545"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="Exit button"/>
+
+</LinearLayout>
